@@ -2,7 +2,6 @@ import { createUIMessageStreamResponse, streamText, toUIMessageStream } from 'ai
 // import { openai } from '@ai-sdk/openai';
 import { google } from '@ai-sdk/google';
 import { JobDescription } from '@/app/types'; // Đường dẫn import có thể thay đổi tùy setup của bạn
-import { openai } from '@ai-sdk/openai';
 
 // Cho phép API chạy tối đa 30 giây (tránh bị timeout khi AI viết dài)
 export const maxDuration = 30;
@@ -60,8 +59,9 @@ export async function POST(req: Request) {
 
     // 3. Gọi OpenAI với tính năng Streaming
     const result = await streamText({
-      model: openai('gpt-4o-mini'), // Dùng model mini cho rẻ và nhanh, đủ tốt cho tác vụ này
+      // model: openai('gemma-4-31b-it'), // Dùng model mini cho rẻ và nhanh, đủ tốt cho tác vụ này
       // model: google('gemini-3.5-flash'), // Dùng model mini cho rẻ và nhanh, đủ tốt cho tác vụ này
+      model: google('gemma-4-31b-it'), // Dùng model mini cho rẻ và nhanh, đủ tốt cho tác vụ này
       system: systemPrompt,
       messages: [
         { role: 'user', content: 'Hãy viết thư xin việc cho tôi dựa trên thông tin trên.' }
