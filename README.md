@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 AI Cover Letter Generator
 
-## Getting Started
+Một ứng dụng **Micro SaaS** cho phép tự động tạo thư xin việc (Cover Letter) được cá nhân hóa 100% dựa trên vị trí ứng tuyển, tên công ty và bộ kỹ năng của ứng viên. Ứng dụng tích hợp mô hình AI thế hệ mới với khả năng **Real-time Streaming** mượt mà.
 
-First, run the development server:
+🔗 **Live Demo:** [https://ai-cover-letter-sable.vercel.app](https://ai-cover-letter-sable.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Tính năng nổi bật (Key Features)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* **Real-time Text Streaming:** Sử dụng Vercel AI SDK để hiển thị kết quả theo thời gian thực (chữ chạy mượt như ChatGPT) thay vì bắt người dùng chờ đợi.
+* **Cá nhân hóa sâu (Tailored Prompting):** Thiết kế System Prompt tối ưu để AI phân tích chính xác kỹ năng ứng viên và viết thư chuẩn phong cách doanh nghiệp.
+* **Giao diện chuẩn Responsive:** Tương thích hoàn hảo trên cả máy tính, tablet và điện thoại di động nhờ Tailwind CSS.
+* **An toàn & Bảo mật:** Toàn bộ kết nối API Key được bảo vệ tuyệt đối ở phía Server (Server-side rendering / Route Handlers).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ Công nghệ sử dụng (Tech Stack)
 
-To learn more about Next.js, take a look at the following resources:
+* **Framework:** [Next.js 15](https://nextjs.org/) (App Router & React Server Components)
+* **Ngôn ngữ:** [TypeScript](https://www.typescriptlang.org/) (Strict Type Safety)
+* **AI Provider:** [Google Gemini API](https://ai.google.dev/) (`gemini-1.5-flash`)
+* **AI SDK:** [Vercel AI SDK](https://sdk.vercel.ai/docs) (`@ai-sdk/google`)
+* **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+* **Deployment:** [Vercel](https://vercel.com/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🧠 Điểm sáng về Kỹ thuật (Engineering Highlights)
 
-## Deploy on Vercel
+1. **Phân tách Server/Client rõ ràng:** 
+   * Client Component (`JobForm.tsx`) quản lý trạng thái form và tương tác người dùng.
+   * Server Route Handler (`app/api/generate/route.ts`) bảo mật `GOOGLE_GENERATIVE_AI_API_KEY` tuyệt đối, không lộ ra phía browser.
+2. **Xử lý dữ liệu với TypeScript:** 
+   * Định nghĩa chặt chẽ `interface JobDescription` và tự động chuyển đổi chuỗi kỹ năng phân cách bằng dấu phẩy thành mảng `string[]` đã qua xử lý chuẩn hóa (trim, filter).
+3. **Cơ chế Streaming Data:** 
+   * Tận dụng `streamText` và `toDataStreamResponse()` để truyền luồng dữ liệu liên tục về Client qua kết nối HTTP.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 💻 Cài đặt & Chạy cục bộ (Local Setup)
+
+### Yêu cầu tiên quyết
+* Node.js phiên bản 18.x trở lên
+* Thẻ Google AI Studio API Key
+
+### Các bước cài đặt
+
+1. **Clone dự án:**
+   ```bash
+   git clone [https://github.com/baobao4124/ai-cover-letter](https://github.com/baobao4124/ai-cover-letter)
+   cd ai-cover-letter
